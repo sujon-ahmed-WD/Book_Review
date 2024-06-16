@@ -5,15 +5,15 @@ import BookCard from "./BookCard";
 
  
 const Books = () => {
+
+  
  
     const[datas,setDatas]=useState([]);
 
      useEffect(()=>{
-        fetch("Book.json")
+        fetch("/book.json")
        .then(res=>res.json())
-       .then(datas=>{
-      
-       setDatas(datas)
+       .then(data=>{setDatas(data)
        })
        },[])
 
@@ -23,7 +23,7 @@ const Books = () => {
         <div className="grid grid-cols-3 hover:">
             {
                 datas.map((book)=><BookCard
-                key={book.id}
+                key={book.bookId}
                 book={book} 
                 ></BookCard>)
             }
