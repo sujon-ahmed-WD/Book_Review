@@ -1,0 +1,80 @@
+[
+    {
+        "bookId": 1,
+        "bookName": "The Silent Patient",
+        "author": "Alex Michaelides",
+        "image": "https://ibb.co/VvTLFDB",
+        "review": "A gripping psychological thriller with a jaw-dropping twist.",
+        "totalPages": 336,
+        "rating": 4.2,
+        "category": "Thriller",
+        "tags": ["Suspense", "Psychological"],
+        "publisher": "Celadon Books",
+        "yearOfPublishing": 2019
+    },
+    {
+        "bookId": 2,
+        "bookName": "Where the Crawdads Sing",
+        "author": "Delia Owens",
+        "image": "https://ibb.co/stnzBT4",
+        "review": "An evocative mystery set in the marshes of North Carolina, beautifully written.",
+        "totalPages": 384,
+        "rating": 4.5,
+        "category": "Fiction",
+        "tags": ["Mystery", "Drama"],
+        "publisher": "G.P. Putnam's Sons",
+        "yearOfPublishing": 2018
+    },
+    {
+        "bookId": 3,
+        "bookName": "Educated",
+        "author": "Tara Westover",
+        "image": "https://ibb.co/qpc2N66",
+        "review": "A powerful memoir about a woman who grew up in a strict and abusive household in rural Idaho but eventually escaped to learn about the wider world through education.",
+        "totalPages": 334,
+        "rating": 4.7,
+        "category": "Memoir",
+        "tags": ["Inspiration", "Biography"],
+        "publisher": "Random House",
+        "yearOfPublishing": 2018
+    },
+    {
+        "bookId": 4,
+        "bookName": "Becoming",
+        "author": "Michelle Obama",
+        "image": "https://ibb.co/QYkYQrp",
+        "review": "An intimate and inspiring memoir by the former First Lady of the United States.",
+        "totalPages": 448,
+        "rating": 4.8,
+        "category": "Autobiography",
+        "tags": ["Inspiration", "Leadership"],
+        "publisher": "Crown",
+        "yearOfPublishing": 2018
+    },
+    {
+        "bookId": 5,
+        "bookName": "Atomic Habits",
+        "author": "James Clear",
+        "image": "https://ibb.co/P1J5pCP",
+        "review": "A practical guide on how small changes can lead to remarkable results in building better habits.",
+        "totalPages": 320,
+        "rating": 4.6,
+        "category": "Self-Help",
+        "tags": ["Personal Development", "Productivity"],
+        "publisher": "Avery",
+        "yearOfPublishing": 2018
+    },
+    {
+        "bookId": 6,
+        "bookName": "The Alchemist",
+        "author": "Paulo Coelho",
+        "image": "https://ibb.co/qMvxRxj",
+        "review": "A timeless tale about following one's dreams and listening to one's heart.",
+        "totalPages": 208,
+        "rating": 4.3,
+        "category": "Fiction",
+        "tags": ["Adventure", "Philosophy"],
+        "publisher": "HarperOne",
+        "yearOfPublishing": 1988
+    }
+]
