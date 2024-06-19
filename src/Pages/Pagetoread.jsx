@@ -1,5 +1,5 @@
  
-const PageRead = () => {
+const  Pagetoread = () => {
     return (
         <div>
             <h1>This is Page Read</h1>
@@ -7,4 +7,4 @@ const PageRead = () => {
     );
 };
 
-export default PageRead;
+export default  Pagetoread;

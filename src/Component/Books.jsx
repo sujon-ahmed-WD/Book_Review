@@ -17,10 +17,10 @@ const Books = () => {
        })
        },[])
 
-       console.log(datas)
+    //    console.log(datas)
     
     return (
-        <div className="grid grid-cols-3 hover:">
+        <div className="grid gap-8 grid-cols-3 w-[90%] mx-auto text-center hover:">
             {
                 datas.map((book)=><BookCard
                 key={book.bookId}
@@ -31,5 +31,6 @@ const Books = () => {
     
     );
 };
+// 
 
 export default Books;
