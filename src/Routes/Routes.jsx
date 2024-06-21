@@ -8,6 +8,7 @@ import Pagetoread from "../Pages/Pagetoread";
 import Mainlayout from "../layouts/Mainlayout";
 import ReadBooks from "../Component/ReadBooks";
 import Wislist from "../Component/Wislist";
+import LineChart from "../Component/LineChart";
 
 export const router = createBrowserRouter([
     {
@@ -41,7 +42,8 @@ export const router = createBrowserRouter([
         },
   
         {
-          path: "/bookdetial/:bookId",
+          path: "/bookdetial/:id",
+          loader:()=>fetch(`/public/book.json`),
           element: <BookDetalis />,
           
         },
@@ -49,6 +51,13 @@ export const router = createBrowserRouter([
         {
           path: "/read",
           element: <Pagetoread/>,
+          children:[
+            {
+              index:true,
+              loader:()=>fetch(`/public/book.json`),
+              element:<LineChart/> 
+            }
+          ]
         },
       ],
     },

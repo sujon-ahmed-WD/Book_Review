@@ -1,23 +1,37 @@
-import ReadBooks from "../Component/ReadBooks";
-
-// Ata holo  akna jodi thak
-const  getReadBooks=()=>{
-    const getBooks=localStorage.getItem('readedBook')
-    if(getBooks){
-        return JSON .parse(getBooks)
+const getReadBooks=()=>{
+    const readedBooks=localStorage.getItem('readedBook')
+    if(readedBooks){
+        return JSON.parse(readedBooks)
     }
-    return [];
+    return[];
+};
+
+const readBooks=(selectedBook)=>{
+
+   
+const exists=getReadBooks().find(readedbook=>readedbook.bookId===selectedBook.bookId)
+if(!exists){
+    getReadBooks().push(selectedBook);
+    localStorage.setItem('readedBook',JSON.stringify(getReadBooks()))
+}
 }
 
-const readBook=(selectedBook)=>{
-    const readBook=getReadBooks();
-    const exists=readBook.find(readBook=>readBook.bookId===selectedBook.bookId)
+// wishlist er jonno
 
-// Reaed book id satha ami Selected korvo ==>> ami jat deme oita id satha jodi mathch kora tah hola 
+const getWishList=()=>{
+    const addedWishBook=localStorage.getItem('wish')
+    if(addedWishBook){
+        return JSON.parse(addedWishBook)
+    }
+    return[];
+}
+const saveWishlist=(selectedBook)=>{
+
+    const addedWishBook=getWishList()
+    const exists=addedWishBook.find(wishBook=>wishBook.bookId===selectedBook.bookId)
     if(!exists){
-        readBook.push(selectedBook);
-        localStorage.setItem('readBook'.JSON.stringify(readBook))
-        //  ata holo josi select book sata book is mathc nh kaa tah hola ami new id ta pussh korlam ja bhi toi ja akhon savbe hoo
-
+        addedWishBook.push(selectedBook);
+        localStorage.setItem('wish',JSON.stringify(addedWishBook))
     }
 }
+export{readBooks,getReadBooks,saveWishlist,getWishList}

@@ -1,87 +1,125 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import React from 'react';
+import { useLoaderData, useParams } from "react-router-dom";
+import React from "react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
- 
+import "react-toastify/dist/ReactToastify.css";
+import {
+  getReadBooks,
+  getWishList,
+  readBooks,
+  saveWishlist,
+} from "../utilites/LocalStorage";
 
 const BookDetalis = () => {
-  const { bookId } = useParams();
+  const [read, setRead] = useState(getReadBooks());
+  const [wish, setWish] = useState(getWishList());
+  const books = useLoaderData();
+  console.log(books)
+   const { id } = useParams();
+  // const idInt = parseInt(id);
+  const selectedBook = books?.find((book) => book.bookId == id);
+   
 
-  const [data, setData] = useState([]);
 
-//  tosted add
+  const {
+    bookName,
+    bookId,
+    category,
+    image,
+    publisher,
+    rating,
+    tags,
+    author,
+    yearOfPublishing,
+    review,
+    totalPages,
+  } = selectedBook ;
 
- const readtost=()=>{ toast('you have  Readlist done')}
-
-
-  useEffect(() => {
-    fetch("/book.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const singlebook = data.find((item) => item.bookId == bookId);
-        setData(singlebook);
-      });
-  }, [bookId]);
+  //  tosted add
 
   // handle
-  const bookread=[]
-  console.log(bookread)
-  const handleread=(id)=>{
-      bookread.push(id)
-    localStorage.setItem('readbook', JSON.stringify(id));
-
-    console.log(id)
-  }
+  const handleRead = (selectedBook) => {
+    const exists = read.find((book) => book.bookId === selectedBook.bookId);
+console.log(exists)
+    if (exists) {
+      toast.warning("You have already read this book");
+    } else {
+      readBooks(selectedBook);
+      setRead((prevRead) => [...prevRead, selectedBook]);
+      toast.success("Great!! You Have Read It");
+      return;
+    } 
+  };
+  const handleWishList = (selectedBook) => {
+    const wishExists = wish?.find(
+      (book) => book.bookId === selectedBook.bookId
+    );
+    const exists = read.find((book) => book.bookId === selectedBook.bookId);
+    if (exists) {
+      toast.warning("Hey!! Already read it");
+    } else if (wishExists) {
+      toast.warning(" Already Added To Wishlist");
+    } else {
+      saveWishlist(selectedBook);
+      setWish((prevWish) => [...prevWish, selectedBook]);
+      toast("Added To Your WishList");
+    }
+  };
 
   return (
- 
-    <div>
-      <div className="card lg:card-side bg-base-100  ">
-        <figure className="w-full h-auto">
-          <img src={data.image} alt="Album" />
+    <div className="">
+      <div className="card card-side shadow-xl ">
+        <figure>
+          <img
+            className="w-[475px] h-[564px] bg-base-300 rounded-xl mb-7 mt-7 ml-9 p-11"
+            src={image}
+            alt="Movie"
+          />
         </figure>
-        <div className="card-body text-left">
-          <h2 className="text-4xl font-serif">{data.bookName}</h2>
-          <h2
-            className=" pt-2
-    text-xl font-medium"
-          >
-            By:{data.author}
-          </h2>
-          <hr />
-          Dystopian :{data.category}
-          <hr />
-          <h1 className=" pt-2text-xl font-bold text-black">
-            Review:<span className="text-sm font-mono">{data.review}</span>
-          </h1>
-          <h1 className="pt-2 text-xl font-bold">
-            Teg :{" "}
-            <span className="gap-4 text-green-500 badge bg-red">
-              {data.tags}
-            </span>
-          </h1>
-          <hr className="pt-4" />
-          {/* {(data.tags).map((tag,i) =>( 
-            <span key={i}  className="gap-4 text-green-500 badge bg-red">{tag}</span>
-         ) )} */}
-          <h4 className="font-smbold">Number of Pages : {data.totalPages}</h4>
-          <h4 className="font-smbold">Publisher :{data.publisher} </h4>
-          <h4 className="font-smbold">
-            Year of Publishing :{data.yearOfPublishing}
-          </h4>
-          <h4 className="font-smbold">Rating :{data.rating}</h4>
-          <div className="card-actions ">
-            
-            <a
+        <div className="card-body">
+          <h2 className="card-title text-3xl playfair">{bookName}</h2>
+          <p>By: {author}</p>
+          <hr className="h- mt- mb-" />
+          <p className="text-xl">{category}</p>
+          <hr className="h-2 mt- mb-" />
 
-            onClick={()=>handleread(data.bookId)}
+          <p>
+            <span className="font-bold work">Review: </span>
+            {review}
+          </p>
+
+          <div className="flex gap-2">
+            <span className="font-bold work">Tag: </span>
+            <ul className="flex gap-4   work text-[#23BE0A]">
+              {tags?.map((tag) => (
+                <li key={tag.id} className="bg-base-200 px-2 rounded-lg">{tag}</li>
+              ))}
+            </ul>
+          </div>
+          <hr className="h-2 mt- mb-" />
+          <div>
+            <p>
+              Number of Pages: <span className="font-bold">{totalPages}</span>
+            </p>
+          </div>
+          <p>
+            Publisher: <span className="font-bold">{publisher}</span>
+          </p>
+          <p>
+            Year of Publishing:{" "}
+            <span className="font-bold">{yearOfPublishing}</span>
+          </p>
+          <p>
+            Rating: <span className="font-bold">{rating}</span>
+          </p>
+          <div className="card-actions gap-3 mt-2 ">
+ 
+
+            <a
               href="#_"
-              
-              
+              onClick={() => handleRead(selectedBook)}
               className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-green-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group"
             >
-              
               <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
                 <svg
                   className="w-6 h-6"
@@ -98,18 +136,21 @@ const BookDetalis = () => {
                   ></path>
                 </svg>
               </span>
-
-              <span className="  text-green-600">Read</span>
+              <span className="absolute flex items-center justify-center w-full h-full text-green-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+             Read
+              </span>
               
             </a>
-      
-           
-            <button   onClick={readtost}   className="btn btn-accent">Wishlist</button>
-            <ToastContainer />
-           
+            <button
+              onClick={() => handleWishList(selectedBook)}
+              className="btn btn-info"
+            >
+              Wishlist
+            </button>
           </div>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
