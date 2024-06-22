@@ -9,7 +9,7 @@ const ListedBook = () => {
 
   if(navigation.state ==='loading') return <Loader/>
   return (
-    <div>
+    <div className="w-[90%] mx-auto">
       <div className="bg-zinc-300 h-max w-full">
         <h1 className="text-center text-5xl p-10 font-serif">Books</h1>
       </div>

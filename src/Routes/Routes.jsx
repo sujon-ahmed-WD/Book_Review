@@ -27,6 +27,7 @@ export const router = createBrowserRouter([
           children:[
             {
               index:true,
+              loader:()=>fetch(`/public/book.json`),
               element:<ReadBooks/>
             },
             {
@@ -56,6 +57,9 @@ export const router = createBrowserRouter([
               index:true,
               loader:()=>fetch(`/public/book.json`),
               element:<LineChart/> 
+            }
+            ,{
+
             }
           ]
         },
