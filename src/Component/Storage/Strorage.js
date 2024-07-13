@@ -1,8 +1,8 @@
 export const getStore =() =>{
-    const find = localStorage.getItem('theme')
+    const find = localStorage.getData('theme')
     return find
 }
 
 export const setStore = (value) =>{
-    localStorage.setItem('theme',value)
+    localStorage.setData('theme',value)
 }

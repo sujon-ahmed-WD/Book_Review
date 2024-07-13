@@ -2,9 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getStore, getwish } from "../Component/localStorage/localStorage";
-import { select } from "d3";
-import { stringify } from "postcss";
-import { to } from "react-spring";
+ 
 
 const BookDetalis = () => {
   const books = useLoaderData();
@@ -50,7 +48,7 @@ const BookDetalis = () => {
   //   const getWhish = getwish();
   //   const getRead = getStore();
   //   const findCard = getRead.find((card) => card.bookId === selectedBook.bookId);
-  //   const findwish=getWhish.find((item)=>item.bookId ===selectedBook.bookId)
+  //   const findwish=getWhish.find((Data)=>Data.bookId ===selectedBook.bookId)
   //   if(findCard)
   //     {
   //       return toast.error("existed!! Already Read")
@@ -61,8 +59,7 @@ const BookDetalis = () => {
   // };
 
   const WishHandler = (Selected) => {
-    // Step 1: চেক করুন 'Selected' ভ্যালিড কিনা
-
+     
     const getWhish = getwish();
     const stord = getStore();
 
@@ -78,13 +75,13 @@ const BookDetalis = () => {
 
     // Step 5: উইশলিস্টে বইটি আছে কিনা খুঁজুন
     const findwish = getWhish
-      ? getWhish.find((item) => item.bookId === Selected.bookId)
+      ? getWhish.find((Data) => Data.bookId === Selected.bookId)
       : undefined;
 
     // Step 6: যদি উইশলিস্টে থাকে, যোগ না করুন
     if (findwish) {
       toast.error("existed!! Already Wishlist");
-      return; // ফাংশন থেকে বের হয়ে আসে
+      return;  
     }
 
     // Step 7: নতুন উইশলিস্ট প্রস্তুত করুন এবং সেভ করুন
@@ -111,21 +108,7 @@ const BookDetalis = () => {
           <hr className="h- mt- mb-" />
           <p className="text-xl">{category}</p>
           <hr className="h-2 mt- mb-" />
-          <div className="card lg:card-side bg-base-100 shadow-xl">
-            <figure>
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-                alt="Album"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">New album is released!</h2>
-              <p>Click the button to listen on Spotiwhy app.</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Listen</button>
-              </div>
-            </div>
-          </div> 
+  
           <p>
             <span className="font-bold work">Review: </span>
             {review}
@@ -160,9 +143,9 @@ const BookDetalis = () => {
           <div className="card-actions gap-3 mt-2 ">
             <button
               onClick={() => ReadHandler(selectedBook)}
-              className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-green-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group"
+              className="relative inline-flex Datas-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-green-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group"
             >
-              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 flex Datas-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -178,7 +161,7 @@ const BookDetalis = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="absolute flex items-center justify-center w-full h-full text-green-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="absolute flex Datas-center justify-center w-full h-full text-green-500 transition-all duration-300 transform group-hover:translate-x-full ease">
                 Read
               </span>
               <span className="relative invisible">Read</span>

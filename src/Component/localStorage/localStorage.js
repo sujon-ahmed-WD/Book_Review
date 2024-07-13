@@ -15,6 +15,6 @@ export const getwish =()=>{
         {
             wishCard=JSON.parse(storedWishCard)
         }
-        else
-        return wishCard
+       
+        return wishCard;
 }

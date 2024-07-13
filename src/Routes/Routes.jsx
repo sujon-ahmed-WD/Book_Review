@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
           children:[
             {
               index:true,
-              loader:()=>fetch(`/public/book.json`),
+              loader:()=>fetch(`/book.json`),
               element:<ReadBooks/>
             },
             {
@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
   
         {
           path: "/bookdetial/:id",
-          loader:()=>fetch(`/public/book.json`),
+          loader:()=>fetch(`/book.json`),
           element: <BookDetalis />,
           
         },
@@ -55,7 +55,7 @@ export const router = createBrowserRouter([
           children:[
             {
               index:true,
-              loader:()=>fetch(`/public/book.json`),
+              loader:()=>fetch(`/book.json`),
               element:<LineChart/> 
             }
             ,{
